@@ -1,0 +1,7 @@
+{
+	"component": true,
+	"usingComponents": {
+		"hairstylist-appointment": "../hairstylist-appointment/hairstylist-appointment",
+		"user-info-popup": "../user-info-popup/user-info-popup"
+	}
+}

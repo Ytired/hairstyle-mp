@@ -1,0 +1,3 @@
+<view class="ui-form {{ui}}">
+    <slot></slot>
+</view>

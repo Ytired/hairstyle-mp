@@ -1,0 +1,49 @@
+{
+	"setting": {
+		"compileHotReLoad": true
+	},
+	"condition": {
+		"miniprogram": {
+			"list": [
+				{
+					"name": "",
+					"pathName": "pages/store-detail/store-detail",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "pages/profile/profile",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "pages/appointment-list/appointment-list",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "pages/work-display/work-display",
+					"query": "id=380c0153646b6ed90017a17141191683",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "pages/notify-page/notify-page",
+					"query": "id=9becd0306478991800164c425fa5d1a8",
+					"launchMode": "default",
+					"scene": null
+				}
+			]
+		}
+	},
+	"description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+	"projectname": "hairstyle-mp",
+	"libVersion": "2.31.1"
+}

@@ -1,0 +1,49 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/profile/profile",
+		"pages/store-detail/store-detail",
+		"pages/appointment-list/appointment-list",
+		"pages/work-display/work-display",
+		"pages/notify-page/notify-page"
+	],
+	"usingComponents": {
+		"van-icon": "@vant/weapp/icon/index",
+		"van-action-sheet": "@vant/weapp/action-sheet/index"
+	},
+	"window": {
+		"backgroundColor": "#F6F6F6",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#F6F6F6",
+		"navigationBarTitleText": "",
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "./images/tabbar/home.png",
+				"selectedIconPath": "./images/tabbar/home_cur.png"
+			},
+			{
+				"pagePath": "pages/profile/profile",
+				"text": "我的",
+				"iconPath": "./images/tabbar/my.png",
+				"selectedIconPath": "./images/tabbar/my_cur.png"
+			}
+		]
+	},
+	"networkTimeout": {
+		"request": 10000,
+		"downloadFile": 10000
+	},
+	"plugins": {
+		"myPlugin": {
+			"version": "2.2.1",
+			"provider": "wx6b6cb15df2836ebe"
+		}
+	},
+	"sitemapLocation": "sitemap.json"
+}

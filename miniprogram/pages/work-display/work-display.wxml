@@ -1,0 +1,44 @@
+<view class="content">
+	<!-- <view class="nav" style="height: {{navHeight}}px; background-color: {{isFixed ? '#fff' : 'transparent'}};"></view> -->
+	<view class="back" style="top: {{backTop}}px;" bindtap="onPageBack">
+		<van-icon name="arrow-left" size="40rpx" />
+	</view>
+
+	<view class="shop-info">
+		<view class="bg">
+			<view class="image-wrapper">
+				<image src="../../images/store.jpg" mode="aspectFill" />
+			</view>
+		</view>
+
+		<view class="info">
+			<van-image
+				round
+				width="150rpx"
+				height="150rpx"
+				src="{{ userInfo.url }}"
+				bindtap="onImageTap"
+			/>
+			<text>{{ userInfo.hairstylistName }}</text>
+			<text class="text-gradient" style="transform: translateY(20rpx);" wx:if="{{ isPush }}">推送剩余次数：{{ total }}</text>
+		</view>
+	</view>
+
+
+	<view class="main">
+		<view class="label" id="a">
+			作品
+		</view>
+		<view class="list">
+			<block wx:for="{{imgList}}" wx:key="_id">
+				<view class="item" data-index="{{ index }}" bindtap="onPreview">
+					<van-image
+						width="200rpx"
+						height="200rpx"
+						src="{{ item.url }}"
+					/>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>

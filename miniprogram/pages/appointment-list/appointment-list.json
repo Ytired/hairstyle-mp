@@ -1,0 +1,9 @@
+{
+	"navigationBarTextStyle": "black",
+	"navigationStyle": "default",
+	"navigationBarTitleText": "预约记录",
+	"usingComponents": {
+		"van-button": "@vant/weapp/button/index",
+		"van-image": "@vant/weapp/image/index"
+	}
+}

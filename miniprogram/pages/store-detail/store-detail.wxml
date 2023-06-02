@@ -1,0 +1,59 @@
+<!--pages/store-detail/store-detail.wxml-->
+<view class="content">
+	<view class="nav" style="height: {{navHeight}}px; background-color: {{isFixed ? '#fff' : 'transparent'}};"></view>
+	<view class="back" style="top: {{backTop}}px;" bindtap="onPageBack">
+		<van-icon name="arrow-left" size="40rpx" />
+	</view>
+
+	<view class="shop-info">
+		<view class="bg">
+			<view class="image-wrapper">
+				<image src="{{ shopData.url }}" mode="aspectFill" />
+			</view>
+			<text class="shop-name">{{shopData.shopName}}</text>
+		</view>
+
+		<view class="info">
+			<view class="localtion-info">
+				<view class="business-time">
+					营业时间：{{shopData.openingHours}}
+				</view>
+				<view class="localtion">
+					{{shopData.address + shopData.detailAddress}}
+				</view>
+			</view>
+
+			<view class="controls">
+				<view class="map" bindtap="openMap">
+					<van-icon name="location" size="50rpx"/>
+					<view class="text">地图</view>
+				</view>
+				<view class="phone" bindtap="openPhone">
+					<van-icon name="phone" size="50rpx"/>
+					<view class="text">电话</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<van-sticky offset-top="{{ navHeight + 15 }}" bind:scroll="handleScroll">
+		<van-tabs active="a" custom-class="custom-class {{!isFixed ? 'hidden' : ''}}" bind:change="onTabChange">
+			<van-tab title="发型师" name="a"></van-tab>
+			<van-tab title="服务" name="b"></van-tab>
+		</van-tabs>
+	</van-sticky>
+
+	<view class="main">
+		<view class="label" id="a">
+			选择发型师
+		</view>
+
+		<hair-stylist hairstylist="{{ hairstylist }}" />
+
+		<view class="label" id="b">
+			选择服务
+		</view>
+
+		<service-list projectList="{{ projectList }}" />
+	</view>
+</view>

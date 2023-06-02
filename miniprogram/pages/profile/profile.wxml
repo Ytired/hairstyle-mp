@@ -1,0 +1,14 @@
+<view class="main">
+
+	<view class="userinfo" bindtap="onGetUserInfo">
+		<van-image round width="160rpx" height="160rpx" src="{{avatarUrl}}" />
+		<view class="nickname">
+			{{nickName}}
+		</view>
+	</view>
+	<van-cell-group inset>
+		<van-cell title="预约记录" is-link link-type="navigateTo" url="../appointment-list/appointment-list"/>
+	</van-cell-group>
+</view>
+
+<user-info-popup popupVisible="{{popupVisible}}" bind:close="onClosePopup"/>

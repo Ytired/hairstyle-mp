@@ -1,0 +1,9 @@
+<view class="content">
+	<view class="title">{{ title }}</view>
+	<view class="text-content">{{ content }}</view>
+	<block wx:for="{{ imgList }}" wx:key="url">
+		<view class="img" data-index="{{ index }}" bindtap="onPreview">
+			<van-image width="100%" height="200px" fit="cover" src="{{ item.url }}" />
+		</view>
+	</block>
+</view>

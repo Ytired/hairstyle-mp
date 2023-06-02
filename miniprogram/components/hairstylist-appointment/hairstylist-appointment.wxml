@@ -1,0 +1,57 @@
+<van-action-sheet show="{{ showPopup }}" bind:close="onPopupClose">
+	<view class="warp">
+		<view class="title calendar-title" wx:if="{{showCalender}}">
+			<van-icon name="arrow-left" size="20px" bindtap="onBackToSelect"/>
+			选择时间
+		</view>
+		<view class="title" wx:else>
+			选择理发师
+		</view>
+
+		<!-- 日历 -->
+		<view class="calendar" wx:if="{{showCalender}}">
+			<calendar id="calendar" config="{{calendarConfig}}" bind:takeoverTap="takeoverTap" bind:afterCalendarRender="afterCalendarRender"/>
+
+			<view class="label">选择时间段</view>
+			<view class="time-list">
+				<block wx:for="{{timeList}}" wx:key="*this">
+					<view class="time-item {{index === timeItemIndex ? 'active' : ''}}" data-index="{{ index }}" bindtap="onTimeTap">{{item}}</view>
+				</block>
+			</view>
+		</view>
+
+		<view class="list" wx:else>
+			<block wx:for="{{ hairstylist }}" wx:key="_id">
+				<view class="item {{index === currentIndex ? 'active' : ''}}" bindtap="onItemTap" data-id="{{ item._id }}" data-index="{{index}}">
+					<van-image round width="120rpx" height="120rpx" src="{{ item.url }}" />
+
+					<view class="info">
+						<view class="name">
+							{{ item.hairstylistName }}
+						</view>
+						<view class="position">
+							{{ item.position}}
+						</view>
+						<view class="exp">
+							{{ item.hairstylistExp }}年
+						</view>
+					</view>
+
+					<!-- <view class="price">
+						￥
+						<text class="money">39</text>
+					</view> -->
+				</view>
+			</block>
+		</view>
+
+		<!-- 下一步 -->
+		<view wx:if="{{showCalender}}" class="button {{btnActive ? 'btnActive' : ''}}" bindtap="onAppointment">
+			预约
+		</view>
+
+		<view wx:else class="button {{btnActive ? 'btnActive' : ''}}" bindtap="onBtnTap">
+			下一步
+		</view>
+	</view>
+</van-action-sheet>

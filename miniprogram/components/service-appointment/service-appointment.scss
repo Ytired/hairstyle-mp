@@ -1,0 +1,82 @@
+.warp {
+	position: relative;
+	padding: 0 20rpx;
+
+  .title {
+		padding-top: 40rpx;
+    text-align: right;
+		font-weight: 500;
+		
+		&.calendar-title {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+	
+	.button {
+		position: fixed;
+		bottom: 40rpx;
+		right: 50%;
+		transform: translateX(50%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		border-radius: 20px;
+		width: 90%;
+		height: 70rpx;
+		background-color: rgba(0, 0, 0, 0.575);
+		font-size: 28rpx;
+
+		&.btnActive {
+			background-color: #000;
+			color: #fff;
+		}
+	}
+}
+
+.custom-class {
+	// --action-sheet-max-height: 72%;
+}
+
+
+.calendar {
+	margin: 60rpx 0;
+
+	.label {
+		margin-top: 20rpx;
+	}
+	
+	.time-list {
+		margin-top: 20px;
+		display: flex;
+		// justify-content: space-between;
+		flex-wrap: wrap;
+		
+		.time-item {
+			width: 21%;
+			height: 50px;
+			margin-right: 32rpx;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid #e8e8e8;
+			margin-bottom: 8px;
+			font-weight: 500;
+			font-size: 14px;
+			border-radius: 6px;
+
+			&:nth-child(4n+0) {
+				margin-right: 0;
+			}
+
+			&.active {
+				color: #fff;
+				background-color: #000;
+			}
+
+			// &:la
+		}
+	}
+}

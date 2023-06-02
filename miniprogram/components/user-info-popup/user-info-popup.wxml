@@ -1,0 +1,26 @@
+<van-popup show="{{ popupVisible }}" safe-area-inset-bottom="false" round position="bottom" bind:close="onClosePopup">
+	<view class="flex-column flex-center ui-container" style="padding-top: 60rpx;">
+		<text class="text-bold flex self-start" style="margin-bottom: 40rpx;">完善用户信息体验更多功能</text>
+		<ui-avatar ui="round sl mt-6" src="{{avatarUrl}}">
+			<ui-tag badge="bl" bg="shadow ui-BG-Main" isSlot icon>
+				<text class="cicon-camera text-white" />
+			</ui-tag>
+			<button class="open-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+			</button>
+		</ui-avatar>
+
+		<view class="w-100 px-4">
+			<input model:value="{{nickName}}" class="text-center mt-5 py-3 round" style="background-color: #F6F6F6;" placeholder="点击获取昵称" type="nickname" />
+			<view style="position: relative;">
+				<input model:value="{{phoneNumber}}" class="text-center mt-5 py-3 round" style="background-color: #F6F6F6;" placeholder="点击获取手机号码" type="nickname" />
+				<button class="open-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">手机号码</button>
+			</view>
+			<button disabled="{{confirmLoading}}" class="ui-btn bg-red block round mt-5" bindtap="onSaveProfile">
+				保存
+				<ui-loading wx:if="{{confirmLoading}}" color />
+			</button>
+		</view>
+	</view>
+</van-popup>
+
+<van-notify id="van-notify" />

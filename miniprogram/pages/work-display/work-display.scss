@@ -1,0 +1,76 @@
+/* pages/store-detail/store-detail.wxss */
+@import "../../style/common.scss";
+
+.back {
+  position: fixed;
+  left: 20rpx;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 101;
+}
+
+.shop-info {
+	// height: 700rpx;
+	position: relative;
+
+	.bg {
+		position: relative;
+		height: 500rpx;
+
+		.image-wrapper {
+			width: 100%;
+			height: 100%;
+
+			image {
+				width: 100%;
+				height: 100%;
+			}
+
+		}
+	}
+
+	.info {
+		position: absolute;
+		left: 50%;
+		top: 55%;
+		transform: translate(-50%, -50%);
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 14px;
+	}
+}
+
+.main {
+	margin: 0;
+	padding: 20rpx;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	transform: translateY(-16px);
+	z-index: 10;
+	background-color: #fff;
+
+	.label {
+		font-size: unset;
+	}
+
+	.list {
+		margin-top: 30rpx;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+}
+
+.text-gradient {
+	// background-image: linear-gradient(to right, orange, purple);
+	background-image: linear-gradient(to right, #f18271 0%, #f3a469 50%, #f7c978 100%);
+	-webkit-background-clip: text;
+	color: transparent;
+}

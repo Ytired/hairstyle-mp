@@ -1,0 +1,39 @@
+<!--pages/index/index.wxml-->
+<view class="content">
+	<view class="banner">
+		<swiper class="swiper" autoplay indicator-dots interval="3000" indicator-active-color="#fff">
+			<block wx:if="{{banners.length}}">
+				<block wx:for="{{banners}}" wx:key="_id">
+					<swiper-item>
+						<image src="{{item.url}}" mode="aspectFill" />
+					</swiper-item>
+				</block>
+			</block>
+
+			<swiper-item wx:else>
+				<image src="../../images/banner.jpg" mode="aspectFill" />
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<view class="main">
+		<!-- <view class="localtion">
+			<view class="address">
+				<van-icon name="map-marked" color="#565656"/>
+				<text class="text">成都市</text>
+			</view>
+		</view>
+
+		<view class="search"></view> -->
+		<view class="label" id="a">
+			门店
+		</view>
+		<view class="store-list" wx:if="{{shops.length}}">
+			<block wx:for="{{shops}}" wx:key="*this">
+				<store-item shop-data="{{item}}" />
+			</block>
+		</view>
+		
+		<van-empty description="暂无门店" wx:else/>
+	</view>
+</view>

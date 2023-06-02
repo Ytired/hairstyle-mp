@@ -1,0 +1,34 @@
+<!--components/service-list/service-list.wxml-->
+<view class="sercice-list">
+	<view class="sercice-item {{currentIndex === index ? 'active' : ''}}" data-index="{{index}}" wx:for="{{hairstylist.length ? hairstylist : projectList}}" wx:key="_id" data-id="{{ item._id }}" bindtap="onItemClick">
+		<view class="tag">
+			{{ item.projectCategory }}
+		</view>
+		<view class="info">
+			<view class="service-name">
+				<view class="title">{{ item.projectName }}</view>
+				<view class="time">
+					{{ item.projectTime }}min
+				</view>
+			</view>
+
+			<view class="price {{showButton ? '' : 'top'}}">
+			￥
+				<view class="text">{{ item.projectPrice }}</view>
+				<view class="qi" wx:if="{{showButton}}">
+					起
+				</view>
+			</view>
+
+			<view class="appointment" bindtap="onItemTap" data-id="{{item._id}}" wx:if="{{showButton}}">
+				预约
+			</view>
+		</view>
+		<view class="desc">
+			{{ item.projectDesc }}
+		</view>
+	</view>
+</view>
+
+<hairstylist-appointment show-popup="{{show}}" bind:close="onPopupClose"/>
+<user-info-popup popupVisible="{{popupVisible}}" bind:close="onClosePopup"/>

@@ -1,0 +1,68 @@
+/* pages/index/index.wxss */
+@import "../../style/common.scss";
+
+.content {
+  height: 100%;
+
+  .swiper {
+    width: 100%;
+    height: 480rpx;
+    border-bottom-left-radius: 24rpx;
+    border-bottom-right-radius: 24rpx;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .main {
+    padding: 20rpx;
+
+    .localtion {
+      display: flex;
+      align-items: center;
+
+      .address {
+        width: 250rpx;
+        height: 70rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1rpx solid #ccc;
+        border-radius: 40rpx;
+        font-size: 28rpx;
+
+        .text {
+          margin-left: 30rpx;
+        }
+      }
+    }
+
+    .store-list {
+
+    }
+  }
+}
+
+
+.label {
+	position: relative;
+	font-size: 30rpx;
+	font-weight: 500;
+	padding-left: 20rpx;
+	line-height: 1;
+	margin: 30rpx 0;
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 8rpx;
+		height: 100%;
+		background-color: #39a1ff;
+		border-radius: 25%;
+	}
+}

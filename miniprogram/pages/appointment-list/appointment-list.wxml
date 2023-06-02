@@ -1,0 +1,30 @@
+<!--pages/appointment-list/appointment-list.wxml-->
+<view class="appointment-list">
+	<block wx:for="{{list}}" wx:key="_id">
+		<view class="item">
+			<view class="shop-title">
+				{{ item.shopInfo.shopName }}
+			</view>
+			<view class="info-container">
+				<van-image
+					width="50px"
+					height="50px"
+					fit="fill"
+					src="{{ item.hInfo.url }}"
+					radius="8px"
+				/>
+				<view class="info">
+					<view class="name">发型师：{{ item.hInfo.hairstylistName }}</view>
+					<view class="project-name">项目名：{{ item.pInfo.projectName }}</view>
+					<view class="address">{{ item.shopInfo.address + item.shopInfo.detailAddress }}</view>
+					<view class="time">{{ item.appointmentTime }}</view>
+				</view>
+				<view class="price">￥ {{ item.pInfo.projectPrice }}</view>
+			</view>
+			<view class="control">
+				<van-button round size="mini" bindtap="onCancel" data-index="{{ index }}" wx:if="{{ item.status === 0 }}">取消预约</van-button>
+				<van-button round disabled type="primary" wx:else size="mini">已取消预约</van-button>
+			</view>
+		</view>
+	</block>
+</view>

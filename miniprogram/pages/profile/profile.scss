@@ -1,0 +1,27 @@
+
+
+page {
+	height: 100%;
+}
+
+.main {
+	padding-top: 40rpx;
+	background-color: #f5f6f9;
+	height: 100%;
+
+	.userinfo {
+		display: flex;
+		align-items: center;
+		border-radius: 18rpx;
+		background-color: #fff;
+		margin: 0 32rpx 40rpx;
+		padding: 30rpx 20rpx;
+		
+
+		.nickname {
+			margin-left: 20rpx;
+			font-weight: 500;
+		}
+	}
+}
+

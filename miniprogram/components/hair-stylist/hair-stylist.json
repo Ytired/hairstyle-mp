@@ -1,0 +1,8 @@
+{
+	"component": true,
+	"usingComponents": {
+		"van-image": "@vant/weapp/image/index",
+		"service-appointment": "../service-appointment/service-appointment",
+		"user-info-popup": "../user-info-popup/user-info-popup"
+	}
+}
