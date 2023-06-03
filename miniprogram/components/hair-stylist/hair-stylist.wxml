@@ -4,15 +4,28 @@
 		<view class="hair-item" wx:for="{{hairstylist}}" wx:key="_id" data-id="{{ item._id }}" bindtap="onShowWorks">
 			<van-image round width="120rpx" height="120rpx" src="{{item.url}}" />
 
-			<text class="nickname">{{ item.hairstylistName }}</text>
-			<text class="position">{{ item.position }}</text>
-			<text class="exp">从业{{item.hairstylistExp}}年</text>
-			<view class="appointment" catchtap="onItemTap" data-id="{{ item._id }}">
+			<view style="height: 180rpx;display: flex;flex-direction: column; justify-content: space-around; align-items: center;">
+				<text class="nickname">{{ item.hairstylistName }}</text>
+				<view class="position">{{ item.position }}</view>
+				<text class="exp">从业{{item.hairstylistExp}}年</text>
+				<view class="sb">
+					<block wx:if="{{ item.status === '今日排班' }}">
+						<van-icon name="manager" color="#929292" />{{item.status}}
+					</block>
+					<block wx:elif="{{ item.status === '暂无排班' }}">
+						{{item.status}}
+					</block>
+					<block wx:else>
+						<van-icon name="clock" color="#929292"/>{{item.status}}
+					</block>
+				</view>
+			</view>
+			<view class="appointment" catchtap="onItemTap" data-info="{{ item }}">
 				预约
 			</view>
 		</view>
 	</scroll-view>
 </view>
 
-<service-appointment show-popup="{{show}}" bind:close="onPopupClose"/>
-<user-info-popup popupVisible="{{popupVisible}}" bind:close="onClosePopup"/>
+<service-appointment show-popup="{{show}}" bind:close="onPopupClose" />
+<user-info-popup popupVisible="{{popupVisible}}" bind:close="onClosePopup" />

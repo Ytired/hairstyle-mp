@@ -20,6 +20,14 @@ import selectable from "../calendar/plugins/selectable";
 
 plugin.use(selectable);
 
+function joinStr(obj) {
+  return `${obj.year}-${padZero(obj.month)}-${padZero(obj.date)}`;
+}
+
+function padZero(num) {
+  return num > 9 ? num : `0${num}`;
+}
+
 Component({
   /**
    * 组件的属性列表
@@ -42,22 +50,11 @@ Component({
     hairstylist: [],
     timeItemIndex: -1,
     timeList: [
-      "10:00:00",
-      "11:00:00",
-      "12:00:00",
-      "13:00:00",
-      "14:00:00",
-      "15:00:00",
-      "16:00:00",
-      "17:00:00",
-      "18:00:00",
-      "19:00:00",
-      "20:00:00",
-      "21:00:00",
     ],
     currentTime: "",
 		currentDate: "",
-		disabled: false
+		dates: [],
+		times: []
   },
 
   /**
@@ -199,7 +196,8 @@ Component({
       const index = e.currentTarget.dataset.index;
       this.data.currentTime = this.data.timeList[index];
       this.setData({
-        timeItemIndex: index,
+				timeItemIndex: index,
+				currentTime: this.data.timeList[index]
       });
     },
     afterCalendarRender(e) {
@@ -209,12 +207,33 @@ Component({
           lunar: false,
         })
         .pop();
-      this.data.currentDate = `${selectedDay.year}-${selectedDay.month}-${selectedDay.date}`;
-      this.calendar = calendar;
+			this.data.currentDate = joinStr(selectedDay);
+			this.calendar = calendar;
+			this.calendar.enableDates(this.data.dates)
+			
+			const date = this.data.dates[0]
+			if (!date) return
+			if (this.data.currentDate !== date.dateTimeStr) return
+			const timeList = this.data.times.find(item => item[date.dateTimeStr])[date.dateTimeStr]
+			this.setData({
+				timeList: timeList.filter(Boolean)
+			})
     },
     takeoverTap(e) {
-      this.calendar.jump(e.detail);
-      console.log("takeoverTap", e.detail); // => { year: 2019, month: 12, date: 3, ...}
+			this.calendar.jump(e.detail);
+      const selectedDay = e.detail
+			this.data.currentDate = joinStr(selectedDay);
+			if (!this.data.dates.length) return
+			const date = this.data.dates.find(item => item.dateTimeStr === this.data.currentDate)
+			console.log(date);
+			if (!date) return
+			const timeList = this.data.times.find(item => item[date.dateTimeStr])[date.dateTimeStr]
+			this.setData({
+				currentTime: '',
+				timeItemIndex: -1,
+				timeList: timeList.filter(Boolean)
+			})
+      console.log("takeoverTap",e.detail); // => { year: 2019, month: 12, date: 3, ...}
     },
     onBackToSelect() {
       this.setData({
@@ -233,7 +252,11 @@ Component({
     onItemTap(e) {
       const { currentTarget } = e;
       serviceStore.setState("hIndex", currentTarget.dataset.index);
-      shopInfoStore.setState("hID", currentTarget.dataset.id);
+			const info = currentTarget.dataset.info
+			shopInfoStore.setState('hID', info._id)
+			const dates = info.dates || []
+			shopInfoStore.setState('dates', sortDatesByDateStr(dates))
+			shopInfoStore.setState('times', info.times || [])
     },
     onPopupClose() {
       this.setData({
@@ -253,12 +276,26 @@ Component({
       this.setData({
         hairstylist: list,
       });
-    },
+		},
+		onDatesAndTimesChange({ dates, times }) {
+			if (dates) {
+				this.setData({
+					dates
+				})
+			}
+			if (times) {
+				this.setData({
+					times,
+					timeList: []
+				})
+			}
+		}
   },
   lifetimes: {
     attached() {
       serviceStore.onState("hIndex", this.onChangeIndex.bind(this));
-      shopInfoStore.onState("hairstylist", this.onChangeHairstylist.bind(this));
+			shopInfoStore.onState("hairstylist", this.onChangeHairstylist.bind(this));
+			shopInfoStore.onStates(["dates", "times"], this.onDatesAndTimesChange.bind(this))
     },
 
     detached() {
@@ -266,3 +303,8 @@ Component({
     },
   },
 });
+
+function sortDatesByDateStr(dates) {
+	if (!dates.length) return []
+  return dates.sort((a, b) => new Date(a.dateTimeStr) - new Date(b.dateTimeStr));
+}

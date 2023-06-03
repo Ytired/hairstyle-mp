@@ -73,8 +73,23 @@ Page({
 			shopID: id
 		}).get({
 			success: (res) => {
+				const datas = res.data
+				for (const item of datas) {
+					if (!item.dates || !item.dates.length) {
+						item.status = '暂无排班'
+						continue
+					}
+					
+					const index = getNearestDateIndex(item.dates)
+					if (typeof index !== 'string') {
+						item.status = '今日排班'
+					} else {
+						const str = formatDate(index)
+						item.status = str
+					}
+				}
 				this.setData({
-					hairstylist: res.data
+					hairstylist: datas
 				})
 			}
 		})
@@ -83,6 +98,7 @@ Page({
 			shopID: id
 		}).get({
 			success: (res) => {
+				
 				this.setData({
 					projectList: res.data
 				})
@@ -152,3 +168,21 @@ Page({
    */
   onShareAppMessage() {},
 });
+
+function getNearestDateIndex(dates) {
+  const today = new Date().toISOString().substr(0, 10);
+  const dateObjs = dates.map(date => ({ date: date.dateTimeStr, diff: Math.abs(new Date(date.dateTimeStr) - new Date(today)) }));
+  const todayIndex = dateObjs.findIndex(date => date.date === today);
+  if (todayIndex !== -1) {
+    return todayIndex;
+  } else {
+    return dateObjs.sort((a, b) => a.diff - b.diff)[0].date;
+  }
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
+}

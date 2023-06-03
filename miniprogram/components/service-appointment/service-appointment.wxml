@@ -17,13 +17,16 @@
 				<block wx:for="{{timeList}}" wx:key="*this">
 					<view class="time-item {{index === timeItemIndex ? 'active' : ''}}" data-index="{{ index }}" bindtap="onTimeTap">{{item}}</view>
 				</block>
+				<view wx:if="{{ !timeList.length }}" style="text-align: center; width: 100%; color: #e48282;">
+					今天暂无排班哦~
+				</view>
 			</view>
 		</view>
 
 		<service-list wx:else show-button="{{false}}" active />
 
 		<!-- 下一步 -->
-		<view wx:if="{{showCalender}}" class="button {{btnActive ? 'btnActive' : ''}}" bindtap="onAppointment">
+		<view wx:if="{{showCalender}}" class="button {{currentTime ? 'btnActive' : ''}}" bindtap="onAppointment">
 			预约
 		</view>
 

@@ -56,9 +56,12 @@ Component({
 				return
 			}
 
-			const id = e.currentTarget.dataset.id
-			shopInfoStore.setState('hID', id)
-			shopInfoStore.dispatch('changeProjectList', id)
+			const info = e.currentTarget.dataset.info
+			shopInfoStore.setState('hID', info._id)
+			const dates = info.dates || []
+			shopInfoStore.setState('dates', sortDatesByDateStr(dates))
+			shopInfoStore.setState('times', info.times || [])
+			shopInfoStore.dispatch('changeProjectList', info._id)
 			this.setData({
 				show: true
 			})
@@ -70,3 +73,8 @@ Component({
 		}
 	}
 })
+
+function sortDatesByDateStr(dates) {
+	if (!dates.length) return []
+  return dates.sort((a, b) => new Date(a.dateTimeStr) - new Date(b.dateTimeStr));
+}

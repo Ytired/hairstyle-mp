@@ -7,6 +7,8 @@ const shopInfoStore = new HYEventStore({
 	state: {
 		projectList: [],
 		hairstylist: [],
+		dates: [],
+		times: [],
 		shopID: '',
 		pID: '',
 		hID: ''

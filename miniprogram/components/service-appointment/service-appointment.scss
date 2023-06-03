@@ -51,13 +51,12 @@
 	.time-list {
 		margin-top: 20px;
 		display: flex;
-		// justify-content: space-between;
+		justify-content: space-between;
 		flex-wrap: wrap;
 		
 		.time-item {
 			width: 21%;
 			height: 50px;
-			margin-right: 32rpx;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -67,16 +66,11 @@
 			font-size: 14px;
 			border-radius: 6px;
 
-			&:nth-child(4n+0) {
-				margin-right: 0;
-			}
-
 			&.active {
 				color: #fff;
 				background-color: #000;
 			}
 
-			// &:la
 		}
 	}
 }
