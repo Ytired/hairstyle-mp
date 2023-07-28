@@ -12,9 +12,15 @@ exports.main = (event, context) => {
 		console.log(res);
 		if (res.errCode == 0) {
 			const _ = cloud.database().command;
-			hairstyList.doc(id).update({
-				data: {
-					pushCount: _.inc(-1),
+			hairstyList.doc(id).get({
+				success: res => {
+					if (res.data.pushCount && res.data.pushCount !== 0) {
+						hairstyList.doc(id).update({
+							data: {
+								pushCount: _.inc(-1),
+							}
+						})
+					}
 				}
 			})
 		}

@@ -1,4 +1,4 @@
-<van-action-sheet show="{{ showPopup }}" bind:close="onPopupClose">
+<van-action-sheet show="{{ showPopup }}" bind:close="onPopupClose" safe-area-inset-bottom="false" custom-class="custom-class">
 	<view class="warp">
 		<view class="title calendar-title" wx:if="{{showCalender}}">
 			<van-icon name="arrow-left" size="20px" bindtap="onBackToSelect"/>

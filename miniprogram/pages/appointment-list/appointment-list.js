@@ -62,7 +62,7 @@ Page({
 					item.appointmentTime = dayjs(item.appointmentTime).format('YYYY-MM-DD HH:mm:ss')
 				}
         this.setData({
-          list: data,
+          list: data.reverse(),
         });
         console.log(res);
       },

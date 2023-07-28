@@ -9,10 +9,6 @@
 					</swiper-item>
 				</block>
 			</block>
-
-			<swiper-item wx:else>
-				<image src="../../images/banner.jpg" mode="aspectFill" />
-			</swiper-item>
 		</swiper>
 	</view>
 
